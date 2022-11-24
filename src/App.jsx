@@ -1,34 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useEffect, useState } from 'react'
+import { ProductsList } from './components/ProductsList'
+import { InputSearch } from './components/InputSearch'
+import { Cart } from './components/Cart'
 
-function App() {
-  const [count, setCount] = useState(0)
 
+export const App = () => { 
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([])
+  const [currentSale, setCurrentSale] = useState([])
+  const [cartTotal, setCartTotal] = useState(0)
+  
+  useEffect(()=>{
+    setCartTotal(currentSale.reduce((total, currenteValue)=>total + currenteValue.price,0))
+  },[currentSale])
+
+  useEffect(()=>{
+    const getProductsInApi = async () =>{
+      const responseJson = await fetch('https://hamburgueria-kenzie-json-serve.herokuapp.com/products')
+      const response = await responseJson.json()
+      setProducts(response)
+    }
+    getProductsInApi()
+  },[])
+
+   
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div className='App'>
+      <header>
+        <h1>Burger <span>Kenzie</span></h1>
+        <InputSearch products={products} setFilteredProducts={setFilteredProducts}/>
+      </header>
+      <main>
+        <section>
+          <ProductsList products={products} setCurrentSale={setCurrentSale} filteredProducts={filteredProducts}/>
+        </section>
+        <Cart currentSale={currentSale} setCurrentSale={setCurrentSale} cartTotal={cartTotal}/>
+      </main>
+      
     </div>
   )
 }
 
-export default App
