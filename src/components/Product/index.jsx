@@ -13,10 +13,12 @@ export const Product = ({product, setCurrentSale}) => {
     return (  
         <li>
             <img src={img} alt={name} />
-            <h2>{name}</h2>
-            <h3>{category}</h3>
-            <p>{price}</p>
-            <button onClick={handleClick}>Adicionar ao carrinho</button>
+            <div className="infosConatiner">
+                <h2>{name}</h2>
+                <h3>{category}</h3>
+                <p>{price}</p>
+                <button onClick={handleClick}>Adicionar ao carrinho</button>
+            </div>
         </li>
     )
 }

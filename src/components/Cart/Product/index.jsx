@@ -10,9 +10,11 @@ export const Product = ({product, setCurrentSale}) => {
     return (  
         <li>
             <img src={img} alt={name} />
-            <h2>{name}</h2>
-            <h3>{category}</h3>
-            <button onClick={handleClick}>Remover</button>
+            <div className="infosConainer">
+                <h2>{name}</h2>
+                <h3>{category}</h3>
+                <button onClick={handleClick}>Remover</button>
+            </div>
         </li>
     );
 }
