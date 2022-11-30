@@ -5,6 +5,15 @@ export const StyledApp = styled.div`
   margin-top: 156px;
   margin-bottom: 16px;
 
+  
+
+  & .findRespost{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+  }
+
   @media (min-width: 414px) {
     margin-top: 96px;
   }
@@ -14,6 +23,10 @@ export const StyledApp = styled.div`
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      gap: 20px;
+    }
+    & main > section{
+      width: 100%;
     }
   }
 `;
