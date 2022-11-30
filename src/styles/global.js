@@ -12,6 +12,7 @@ export const GlobalStyle = createGlobalStyle`
 
     button{
         border: none;
+        background-color: transparent;
         cursor: pointer;
     }
 
@@ -32,6 +33,7 @@ export const GlobalStyle = createGlobalStyle`
     --color-grey50:  #828282;
     --color-grey20:  #E0E0E0;
     --color-grey0:   #F5F5F5;
+    --color-white:   #FFFFFF;
 
     --color-negative:    #E60000;
     --color-warning:     #FFCD07;
