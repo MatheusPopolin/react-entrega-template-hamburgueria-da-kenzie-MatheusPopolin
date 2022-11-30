@@ -12,6 +12,7 @@ export const StyledApp = styled.div`
     justify-content: space-between;
     align-items: center;
     margin: 20px 0;
+    gap: 10px;
   }
 
   @media (min-width: 414px) {
