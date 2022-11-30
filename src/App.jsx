@@ -4,6 +4,7 @@ import { StyledApp } from "./styles/app";
 import { StyledHeader } from "./styles/components/header";
 import { Container } from "./styles/components/container";
 import { Logo } from "./styles/components/logo";
+import { StyledButton } from "./styles/components/buttons";
 import { InputSearch } from "./components/InputSearch";
 import { Heading1 } from "./styles/components/typography";
 import { ProductsList } from "./components/ProductsList";
@@ -31,9 +32,7 @@ export const App = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await api.get(
-          "https://hamburgueria-kenzie-json-serve.herokuapp.com/products"
-        );
+        const response = await api.get("products");
         setProducts(response.data);
         setFilteredProducts(response.data);
       } catch (error) {
@@ -41,6 +40,16 @@ export const App = () => {
       }
     })();
   }, []);
+
+  useEffect(() => {
+    const filteredProducts = products.filter((product) => {
+      return (
+        product.name.toLowerCase().includes(filteredWord.toLowerCase()) ||
+        product.category.toLowerCase().includes(filteredWord.toLowerCase())
+      );
+    });
+    setFilteredProducts(filteredProducts);
+  }, [filteredWord])
 
   return (
     <StyledApp className="App">
@@ -50,8 +59,6 @@ export const App = () => {
             Burger <span>Kenzie</span>
           </Logo>
           <InputSearch
-            products={products}
-            setFilteredProducts={setFilteredProducts}
             setFilteredWord={setFilteredWord}
           />
         </Container>
@@ -60,9 +67,12 @@ export const App = () => {
         <main>
           <section>
             {filteredWord && (
-              <Heading1 color="grey100">
-                Resultados para: {filteredWord}
-              </Heading1>
+              <div className="findRespost">
+                <Heading1 color="grey100">
+                  Resultados para: {filteredWord}
+                </Heading1>
+                <StyledButton onClick={()=>setFilteredWord("")} color="primary" size="medium">Limpar Busca</StyledButton>
+              </div>
             )}
             <ProductsList
               setCurrentSale={setCurrentSale}
