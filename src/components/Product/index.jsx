@@ -53,10 +53,13 @@ export const Product = ({
         <Caption color="grey50">{category}</Caption>
         <Body color="primary100">{price.toLocaleString("pt-br", {style: "currency",currency: "BRL",})}</Body>
         <div>
-          <StyledButton size="medium" color="primary" onClick={addProduct}>Adicionar</StyledButton>
-          {productsCount[product.id - 1] > 0 && (
+        {productsCount[product.id - 1] > 0 ?
+          <>
+            <StyledButton size="medium" color="grey" onClick={addProduct}>Adicionar</StyledButton>
             <StyledButton size="medium" color="grey" onClick={removeProduct}>Remover</StyledButton>
-          )}
+          </> :
+          <StyledButton size="medium" color="primary" onClick={addProduct}>Adicionar</StyledButton> 
+        }          
         </div>
       </div>
     </StyledProduct>
