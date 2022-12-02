@@ -3,6 +3,7 @@ import { StyledInputSearch } from "./style";
 
 export const InputSearch = ({
   setFilteredWord,
+  filteredWord
 }) => {
   const setFilter = (e) => {
     e.preventDefault();
@@ -14,6 +15,7 @@ export const InputSearch = ({
     <StyledInputSearch>
       <InputDefault
         onChange={setFilter}
+        value={filteredWord}
         type="text"
         placeholder="Digitar pesquisa"
       />

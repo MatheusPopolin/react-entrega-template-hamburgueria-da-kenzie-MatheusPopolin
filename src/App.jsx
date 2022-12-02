@@ -60,6 +60,7 @@ export const App = () => {
           </Logo>
           <InputSearch
             setFilteredWord={setFilteredWord}
+            filteredWord={filteredWord}
           />
         </Container>
       </StyledHeader>
